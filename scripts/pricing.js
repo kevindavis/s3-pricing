@@ -15,15 +15,15 @@ var slideValues ={
         return total;
     },
     storage : {
-        index : 3,
-        stepSize : 1,
-        slideRange : {
-            max : 500,
-            min  : 3
-        },
-        getPrice : function(){
-            return (this.index - 3)*10;
-        }
+				index : 3,
+				stepSize : 1,
+				slideRange : {
+				    max : 500,
+				    min  : 3
+				},
+				getPrice : function(){
+				    return (this.index - 3)*10;
+				}
     },
     write_reqs : {
         index : 0,
@@ -37,14 +37,14 @@ var slideValues ={
         }
     },
     read_reqs: {
-        index : 100000,
+        index : 0,
         stepSize : 100000,
         slideRange : {
             max : 50000000,
-            min  : 100000
+            min  : 0
         },
         getPrice : function(){
-            return ((this.index-100000)/100000)*10;
+            return Math.round(this.index/10000*0.01);
         }
     },
     data_transfer : {
