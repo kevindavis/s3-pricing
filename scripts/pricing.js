@@ -114,16 +114,6 @@ $(document).ready(function () {
 	// Ipad Fix
 	$('.pricingslider .cursor .helper').live('touchstart touchmove touchend',function(){});
 	
-	/* $('.pricingslider .cursor .helper').live('dragstart',function(other, event){
-		var dragged = $(this);
-		$('.pricingslider .cursor.draggable').filter(function(){
-			return $(this) == dragged;
-		}).removeClass('draggable');
-	});
-	$('.pricingslider .cursor .helper').live('dragend',function(other, event){
-		$('.pricingslider .cursor').addClass('draggable');
-	}); */
-	
     $('.pricingslider .cursor .helper').live('drag',function(other, event){
 		
         var sindex= 0;
@@ -170,17 +160,21 @@ $(document).ready(function () {
         var xval = slidelimit - sindex;
         
         var shownIndex =  ((xval*valmax) / slidelimit) + slideRange.min;
-        
-        
+				var base_unit = '';
+				var K_unit = 'K';
+				var M_unit = 'M';
+        if(target.attr('id') == 'slideStorage' || target.attr('id') == 'slideTransfer') {
+					base_unit = 'GB'; K_unit = 'TB'; M_unit = 'PB';
+				} 
         
 				if(shownIndex >= 1000000){
-					target.children('.amount').text(shownIndex/1000000+'M');
+					target.children('.amount').text(shownIndex/1000000+M_unit);
 				}
 				else if(shownIndex >= 1000){
-        	target.children('.amount').text(shownIndex/1000+'K');
+        	target.children('.amount').text(shownIndex/1000+K_unit);
 				}  
         else {
-            target.children('.amount').text(shownIndex);
+            target.children('.amount').text(shownIndex+base_unit);
         }
         slideValues[target.attr('jsMap')].index = shownIndex;
         
