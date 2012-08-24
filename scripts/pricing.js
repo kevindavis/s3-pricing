@@ -27,13 +27,13 @@ var slideValues ={
     },
     write_reqs : {
         index : 0,
-        stepSize : 100,
+        stepSize : 10000,
         slideRange : {
-            max : 50000,
+            max : 5000000,
             min  : 0
         },
         getPrice : function(){
-            return Math.round((this.index/100)*10);
+            return Math.round(this.index/1000 * 0.01);
         }
     },
     read_reqs: {
@@ -44,7 +44,7 @@ var slideValues ={
             min  : 0
         },
         getPrice : function(){
-            return Math.round(this.index/10000*0.01);
+            return Math.round(this.index/10000 * 0.01);
         }
     },
     data_transfer : {
