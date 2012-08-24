@@ -14,7 +14,7 @@ var slideValues ={
         }
         return total;
     },
-    std : {
+    storage : {
         index : 3,
         stepSize : 1,
         slideRange : {
@@ -25,7 +25,7 @@ var slideValues ={
             return (this.index - 3)*10;
         }
     },
-    light : {
+    write_reqs : {
         index : 0,
         stepSize : 100,
         slideRange : {
@@ -36,7 +36,7 @@ var slideValues ={
             return Math.round((this.index/100)*10);
         }
     },
-    records: {
+    read_reqs: {
         index : 100000,
         stepSize : 100000,
         slideRange : {
@@ -47,7 +47,7 @@ var slideValues ={
             return ((this.index-100000)/100000)*10;
         }
     },
-    api : {
+    data_transfer : {
         index : 50000,
         stepSize : 150000,
         slideRange : {
