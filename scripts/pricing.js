@@ -59,7 +59,6 @@ var slideValues ={
         }
     }
 }
-//
     
 var vibrate = function(){
     elemento.stop(true,false).css({left: 20+Math.round(Math.random() * shake) - ((shake + 1) / 2) +'px'});
@@ -70,38 +69,7 @@ var stopVibration = function() {
     elemento.stop(true,false).css({left: '20px'});
 };
 
-function contactHighlight(){
-	$('.contactus').animate(
-    {	color: '#ffcc66'},{
-        "duration": "slow",
-        "easing": "linear"
-    }).animate(
-    {	color: '#878787'},{
-        "duration": "slow",
-        "easing": "linear"
-    });
-}
-
-function hideContactDialog(){
-    $( '#contactDialog .modal' ).clearQueue();
-    $( '#contactDialog .modal' ).animate(
-    {	
-        width: ['0', 'easeOutBounce'],
-        height: ['0', 'easeOutBounce'],
-        "margin-top": ['0', 'easeOutBounce'],
-        "margin-left": ['0', 'easeOutBounce']
-    },
-    {
-        "duration": 1000,
-        "easing": "easeInOutBounce",
-        "complete":function(){
-            $( '#contactDialog' ).hide();
-        }
-    });
-}
-
 $(document).ready(function () {
-    
     
 	// Add Draggable Helper
 	$('.pricingslider .cursor').each(function(){
@@ -160,13 +128,13 @@ $(document).ready(function () {
         var xval = slidelimit - sindex;
         
         var shownIndex =  ((xval*valmax) / slidelimit) + slideRange.min;
+        
 				var base_unit = '';
 				var K_unit = 'K';
 				var M_unit = 'M';
         if(target.attr('id') == 'slideStorage' || target.attr('id') == 'slideTransfer') {
 					base_unit = 'GB'; K_unit = 'TB'; M_unit = 'PB';
 				} 
-        
 				if(shownIndex >= 1000000){
 					target.children('.amount').text(shownIndex/1000000+M_unit);
 				}
