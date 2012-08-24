@@ -172,14 +172,20 @@ $(document).ready(function () {
         var shownIndex =  ((xval*valmax) / slidelimit) + slideRange.min;
         
         
-        if(shownIndex>=1000){
-            target.children('.amount').text(shownIndex/1000+'K');
-        }else{
+        
+				if(shownIndex >= 1000000){
+					target.children('.amount').text(shownIndex/1000000+'M');
+				}
+				else if(shownIndex >= 1000){
+        	target.children('.amount').text(shownIndex/1000+'K');
+				}  
+        else {
             target.children('.amount').text(shownIndex);
         }
         slideValues[target.attr('jsMap')].index = shownIndex;
         
-        targetParent.siblings('.pricingheader').children('.price').text(slideValues[target.attr('jsMap')].getPrice());
+				targetParent.siblings('.pricingheader').children('.price')
+					.text(slideValues[target.attr('jsMap')].getPrice());
         
         $('#pricingtotal .pricingheader .price').text(slideValues.getTotalPrice());
         
