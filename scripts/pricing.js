@@ -48,14 +48,14 @@ var slideValues ={
         }
     },
     data_transfer : {
-        index : 50000,
-        stepSize : 150000,
+        index : 0,
+        stepSize : 100,
         slideRange : {
-            max : 75050000,
-            min  : 50000
+            max : 500000,
+            min  : 0
         },
         getPrice : function(){
-            return ((this.index-50000)/150000)*10;
+            return Math.round(this.index * 0.12);
         }
     }
 }
