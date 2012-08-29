@@ -1,28 +1,28 @@
 var interval = 10;
 var duration= 1000;
 var shake= 3;
-var vibrateIndex = 0;	
+var vibrateIndex = 0; 
 var elemento;
 
 var slideValues ={
-    getTotalPrice : function(){
-        var total = 0;
-        for(var i in this){
-            if( typeof this[i].getPrice != 'undefined' ){
-                total += this[i].getPrice();
-            }
-        }
-        return total;
-    },
     storage : {
 				index : 3,
 				stepSize : 1,
+		getTotalPrice : function(){
+				var total = 0;
+				for(var i in this){
+						if( typeof this[i].getPrice != 'undefined' ){
+								total += this[i].getPrice();
+						}
+				}
+				return total;
+		},
 				slideRange : {
-				    max : 500,
-				    min  : 3
+						max : 50000000,
+						min	 : 0
 				},
 				getPrice : function(){
-				    return (this.index - 3)*10;
+						return Math.round(this.index/10000 * 0.01);
 				}
     },
     write_reqs : {
@@ -61,12 +61,12 @@ var slideValues ={
 }
     
 var vibrate = function(){
-    elemento.stop(true,false).css({left: 20+Math.round(Math.random() * shake) - ((shake + 1) / 2) +'px'});
+		elemento.stop(true,false).css({left: 20+Math.round(Math.random() * shake) - ((shake + 1) / 2) +'px'});
 }
 
 var stopVibration = function() {
-    clearInterval(vibrateIndex);
-    elemento.stop(true,false).css({left: '20px'});
+		clearInterval(vibrateIndex);
+		elemento.stop(true,false).css({left: '20px'});
 };
 
 $(document).ready(function () {
@@ -76,59 +76,47 @@ $(document).ready(function () {
 		$(this).append('<div class="helper">&nbsp;</div>');
 		//Init Touch events if is in Ipad
 		if(isIpad){
-		   initTouchEvents($(this).children('.helper'),false);
+			 initTouchEvents($(this).children('.helper'),false);
 		}
 	});
 	// Ipad Fix
 	$('.pricingslider .cursor .helper').live('touchstart touchmove touchend',function(){});
 	
-    $('.pricingslider .cursor .helper').live('drag',function(other, event){
+		$('.pricingslider .cursor .helper').live('drag',function(other, event){
 		
-        var sindex= 0;
-        var target = $(event.target).parent();
-        var targetParent = target.parent();
-        
-        var slideRange = slideValues[target.attr('jsMap')].slideRange;
-        
-        var slidelimit =  targetParent.height() - target.height();
-        
-        var steps = (slideRange.max - slideRange.min) /slideValues[target.attr('jsMap')].stepSize;
-        
-        if(steps > slidelimit){
-            steps = slidelimit;
-        }
-        
-        // Normalize Steps
-        var stepRange = slidelimit / steps;
-        
-        var realOffset = Math.round((event.offsetY - targetParent.offset().top)/stepRange) *stepRange ;
-        
-        if( realOffset >= 0 && realOffset <= slidelimit){
-            sindex = realOffset;
-        }else{
-            if(realOffset < 0){
-                
-                sindex = 0;
-                
-                var displayContactUs = true;
-                
-            }else{
-                
-                sindex = slidelimit;
-
-            }
-        }
-        
-        target.css({
-            top: Math.round( sindex )
-        });
-        
-        var valmax = steps * slideValues[target.attr('jsMap')].stepSize;
-        
-        var xval = slidelimit - sindex;
-        
-        var shownIndex =  ((xval*valmax) / slidelimit) + slideRange.min;
-        
+				var sindex= 0;
+				var target = $(event.target).parent();
+				var targetParent = target.parent();
+				
+				var slideRange = slideValues[target.attr('jsMap')].slideRange;
+				var slideLimit =	targetParent.height() - target.height();
+				var stepSize = slideValues[target.attr('jsMap')].stepSize;
+				var steps = (slideRange.max - slideRange.min) / stepSize;
+				
+				if(steps > slideLimit){
+						steps = slideLimit;
+				}
+				
+				// Normalize Steps
+				var stepRange = slideLimit / steps;
+				var realOffset = Math.round((event.offsetY - targetParent.offset().top)/stepRange) *stepRange ;
+				
+				if( realOffset >= 0 && realOffset <= slideLimit){
+						sindex = realOffset;
+				} else{
+						if(realOffset < 0){
+								sindex = 0;
+								var displayContactUs = true;
+						} else {
+								sindex = slideLimit;
+						}
+				}
+				
+				target.css({ top: Math.round( sindex ) });
+			 
+				var valmax = steps * stepSize;
+				var xval = slideLimit - sindex;
+				var shownIndex =	((xval*valmax) / slideLimit) + slideRange.min;
 				var base_unit = '';
 				var K_unit = 'K';
 				var M_unit = 'M';
@@ -148,8 +136,8 @@ $(document).ready(function () {
         
 				targetParent.siblings('.pricingheader').children('.price')
 					.text(slideValues[target.attr('jsMap')].getPrice());
-        
-        $('#pricingtotal .pricingheader .price').text(slideValues.getTotalPrice());
-        
-    });
+				
+				$('#pricingtotal .pricingheader .price').text(slideValues.getTotalPrice());
+				
+		});
 });
