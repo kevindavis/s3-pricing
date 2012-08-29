@@ -105,7 +105,13 @@ var stopVibration = function() {
 };
 
 $(document).ready(function () {
-    
+	
+	$("#question-link").click(function(){
+		$(this).hide();
+		$("#faq-title").show();
+		$("#faq").show();
+	});
+	
 	// Add Draggable Helper
 	$('.pricingslider .cursor').each(function(){
 		$(this).append('<div class="helper">&nbsp;</div>');

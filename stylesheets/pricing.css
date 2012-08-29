@@ -3,6 +3,8 @@
 	margin-bottom: 25px;
 	font-size: 3em;
 }
+#faq, #faq-title { display: none; }
+
 
 #pricingBody{
 	background: url("../images/content-back.png") 0 60px repeat;
