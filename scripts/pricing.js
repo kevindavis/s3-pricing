@@ -34,7 +34,7 @@ var slideValues ={
 		},
 		storage : {
 				index : 0,
-				stepSize : 1024,
+				stepSize : 256,
 				slideRange : {
 						max : 20*1024,
 						min	 : 0
@@ -76,9 +76,9 @@ var slideValues ={
 		},
 		data_transfer : {
 				index : 0,
-				stepSize : 1024,
+				stepSize : 256,
 				slideRange : {
-						max : 20*1024,
+						max : 5*1024,
 						min	 : 0
 				},
 				getPrice : function(){
