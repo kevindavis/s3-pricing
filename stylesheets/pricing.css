@@ -1,3 +1,9 @@
+#title {
+	margin-top: 50px;
+	margin-bottom: 25px;
+	font-size: 3em;
+}
+
 #pricingBody{
 	background: url("../images/content-back.png") 0 60px repeat;
 	position: relative;
