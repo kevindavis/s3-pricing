@@ -4,8 +4,6 @@ var shake= 3;
 var vibrateIndex = 0; 
 var elemento;
 
-// test cases:
-// 5TB storage = 578.56 
 function progressivePrice(rates, amount) {
 	var total = 0;
 	
